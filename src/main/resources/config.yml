@@ -1,0 +1,29 @@
+
+
+
+
+ranks:
+  dirt:
+    start: 0
+    end: 14
+  grass:
+    start: 15
+    end: 29
+  stone:
+    start: 30
+    end: 59
+  iron:
+    start: 60
+    end: 124
+  gold:
+    start: 125
+    end: 249
+  obsidian:
+    start: 250
+    end: 499
+  diamond:
+    start: 500
+    end: 999
+  emerald:
+    start: 1000
+    end: 4999

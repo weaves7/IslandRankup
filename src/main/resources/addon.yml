@@ -1,0 +1,4 @@
+name: IslandRankup
+version: "${project.version}"
+main: org.makershaven.islandrankup.IslandRankup
+authors: "Weaves"
