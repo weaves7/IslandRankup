@@ -1,7 +1,6 @@
-
-
-
-
+# Enable anonymous metrics data? Please do, it helps us stay motivated.
+metrics: true
+# You can change these ranks or add to it if you would like, just make sure you follow the format.
 ranks:
   dirt:
     start: 0

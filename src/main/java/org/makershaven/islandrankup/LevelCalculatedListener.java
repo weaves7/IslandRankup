@@ -36,7 +36,7 @@ class LevelCalculatedListener implements Listener {
 
             //TODO This works but I would like to find a way to automate it for ops. Loop and remove all?
             if (player.isOp() || player.hasPermission("*")){
-                player.sendMessage(ChatColor.GREEN+"[IslandRank]"+ChatColor.RED+"Due to being opped you will need to manually remove your old island rank and add your new island rank, ["+newRankName+"]. Or deop yourself and rerun the command.");
+                player.sendMessage(ChatColor.GREEN + "[IslandRankup] " + ChatColor.RED + "Due to being opped you will need to manually remove your old island rank and add your new island rank, [" + newRankName + "]. Or deop yourself and rerun the command.");
             }
             else if (player.hasPermission(oldRankPerm)) {
                 plugin.getServer().dispatchCommand(plugin.getServer().getConsoleSender(),
