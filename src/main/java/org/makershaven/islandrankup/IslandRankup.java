@@ -1,9 +1,8 @@
 package org.makershaven.islandrankup;
 
-import org.bukkit.plugin.RegisteredServiceProvider;
-
 import net.milkbowl.vault.permission.Permission;
 import org.bstats.bukkit.Metrics;
+import org.bukkit.plugin.RegisteredServiceProvider;
 import world.bentobox.bentobox.api.addons.Addon;
 
 import java.util.logging.Level;
@@ -17,7 +16,9 @@ public class IslandRankup extends Addon {
         saveDefaultConfig();
         loadRanks();
         registerListener(new LevelCalculatedListener(this));
-        setupPermissions();
+        if (!setupPermissions()) {
+            this.getLogger().log(Level.WARNING, "[IslandRankup] Could not hook into Vault's permissions!");
+        }
         if (this.getConfig().getBoolean("metrics", true)) {
             Metrics metrics = new Metrics(this.getPlugin(), 6667);
             metrics.addCustomChart(new Metrics.SimplePie("addonVersion", () -> getDescription().getVersion()));
@@ -47,7 +48,7 @@ public class IslandRankup extends Addon {
     }
 
     public Permission getPerms() {
-    	return perms;
+        return perms;
     }
 
 }
