@@ -1,7 +1,8 @@
-
-
-
-
+#oSoloTurk's Patch | Developed for vault api
+level_up:
+  enabled: true
+  message: '&7[&3Island Rankup&7] &f<PLAYER>''s new rank is <RANK>'
+  broadcast_mode: true
 ranks:
   dirt:
     start: 0

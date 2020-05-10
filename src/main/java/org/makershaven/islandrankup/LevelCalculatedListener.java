@@ -7,6 +7,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.permissions.Permission;
 import org.bukkit.permissions.PermissionDefault;
+
 import world.bentobox.level.calculators.CalcIslandLevel;
 import world.bentobox.level.event.IslandLevelCalculatedEvent;
 
@@ -34,18 +35,23 @@ class LevelCalculatedListener implements Listener {
             Permission oldRankPerm = new Permission("islandrankup." + oldRankName, PermissionDefault.FALSE);
             Permission newRankPerm = new Permission("islandrankup." + newRankName, PermissionDefault.FALSE);
 
-            //TODO This works but I would like to find a way to automate it for ops. Loop and remove all?
             if (player.isOp() || player.hasPermission("*")){
                 player.sendMessage(ChatColor.GREEN+"[IslandRank]"+ChatColor.RED+"Due to being opped you will need to manually remove your old island rank and add your new island rank, ["+newRankName+"]. Or deop yourself and rerun the command.");
             }
             else if (player.hasPermission(oldRankPerm)) {
-                plugin.getServer().dispatchCommand(plugin.getServer().getConsoleSender(),
-                        "lp user " + player.getName() + " parent remove " + oldRankName);
+            	plugin.getPerms().playerRemoveGroup(player,oldRankName);
             }
 
             if (!player.hasPermission(newRankPerm)) {
-                plugin.getServer().dispatchCommand(plugin.getServer().getConsoleSender(),
-                        "lp user " + player.getName() + " parent add " + newRankName);
+	    //Some permission plugins bugging when instantly remove and give group.
+
+            	Bukkit.getScheduler().scheduleSyncDelayedTask(plugin.getPlugin(), () -> {
+					plugin.getPerms().playerAddGroup(player, newRankName);
+					if(plugin.getConfig().getBoolean("level_up.enabled")) {
+						if(plugin.getConfig().getBoolean("level_up.broadcast_mode")) Bukkit.broadcastMessage(plugin.getConfig().getString("level_up.message").replace("<PLAYER>", player.getName()).replace("<RANK>", newRankName));
+						else player.sendMessage(plugin.getConfig().getString("level_up.message").replace("<PLAYER>", player.getName()).replace("<RANK>", newRankName));
+					}
+				}, 3);
             }
         }
 
