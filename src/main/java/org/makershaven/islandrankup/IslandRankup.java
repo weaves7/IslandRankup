@@ -1,18 +1,23 @@
 package org.makershaven.islandrankup;
 
+import org.bukkit.plugin.RegisteredServiceProvider;
+
+import net.milkbowl.vault.permission.Permission;
 import org.bstats.bukkit.Metrics;
 import world.bentobox.bentobox.api.addons.Addon;
 
 import java.util.logging.Level;
 
 public class IslandRankup extends Addon {
-    ;
+
+    private static Permission perms = null;
 
     @Override
     public void onEnable() {
         saveDefaultConfig();
         loadRanks();
         registerListener(new LevelCalculatedListener(this));
+        setupPermissions();
         if (this.getConfig().getBoolean("metrics", true)) {
             Metrics metrics = new Metrics(this.getPlugin(), 6667);
             metrics.addCustomChart(new Metrics.SimplePie("addonVersion", () -> getDescription().getVersion()));
@@ -33,6 +38,16 @@ public class IslandRankup extends Addon {
             Rank.ranks.add(new Rank(rankName, start, end));
             getLogger().info("[IslandRankup] Loaded rank " + rankName + " from level " + start + " to " + end);
         }
+    }
+
+    private boolean setupPermissions() {
+        RegisteredServiceProvider<Permission> rsp = getServer().getServicesManager().getRegistration(Permission.class);
+        perms = rsp.getProvider();
+        return perms != null;
+    }
+
+    public Permission getPerms() {
+    	return perms;
     }
 
 }

@@ -1,6 +1,11 @@
 # Enable anonymous metrics data? Please do, it helps us stay motivated.
 metrics: true
 # You can change these ranks or add to it if you would like, just make sure you follow the format.
+#oSoloTurk's Patch | Developed for vault api
+level_up:
+  enabled: true
+  message: '&7[&3Island Rankup&7] &f<PLAYER>''s new rank is <RANK>'
+  broadcast_mode: true
 ranks:
   dirt:
     start: 0
