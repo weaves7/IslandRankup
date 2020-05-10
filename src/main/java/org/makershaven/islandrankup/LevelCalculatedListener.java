@@ -43,6 +43,8 @@ class LevelCalculatedListener implements Listener {
             }
 
             if (!player.hasPermission(newRankPerm)) {
+	    //Some permission plugins bugging when instantly remove and give group.
+
             	Bukkit.getScheduler().scheduleSyncDelayedTask(plugin.getPlugin(), () -> {
 					plugin.getPerms().playerAddGroup(player, newRankName);
 					if(plugin.getConfig().getBoolean("level_up.enabled")) {
