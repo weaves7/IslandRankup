@@ -32,6 +32,8 @@ class LevelCalculatedListener implements Listener {
         String oldRankName = Rank.findPlayersOldRankName(plugin, player);
         String newRankName = Rank.getRankNameFromLevel(plugin, newLevel);
 
+        if (newRankName == null) return;
+
         if (oldRankName == null || !oldRankName.equals(newRankName)) {
             Permission oldRankPerm = new Permission("islandrankup." + oldRankName, PermissionDefault.FALSE);
             Permission newRankPerm = new Permission("islandrankup." + newRankName, PermissionDefault.FALSE);
