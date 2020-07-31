@@ -40,15 +40,15 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.github.BentoBoxWorld</groupId>
-            <artifactId>Level</artifactId>
-            <version>82cbb487de</version>
+            <groupId>world.bentobox</groupId>
+            <artifactId>level</artifactId>
+            <version>2.3.3</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.github.BentoBoxWorld</groupId>
-            <artifactId>BentoBox</artifactId>
-            <version>1.11.1</version>
+            <groupId>world.bentobox</groupId>
+            <artifactId>bentobox</artifactId>
+            <version>1.14.2</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
