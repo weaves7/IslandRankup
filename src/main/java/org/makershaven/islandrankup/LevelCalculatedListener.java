@@ -7,9 +7,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.permissions.Permission;
 import org.bukkit.permissions.PermissionDefault;
-import world.bentobox.level.calculators.CalcIslandLevel;
-import world.bentobox.level.event.IslandLevelCalculatedEvent;
-
+import world.bentobox.level.calculators.Results;
+import world.bentobox.level.events.IslandLevelCalculatedEvent;
 
 class LevelCalculatedListener implements Listener {
     private IslandRankup plugin;
@@ -20,7 +19,7 @@ class LevelCalculatedListener implements Listener {
 
     @EventHandler
     void onLevelCalculated(IslandLevelCalculatedEvent event) {
-        CalcIslandLevel.Results results = event.getResults();
+        Results results = event.getResults();
         Player player = Bukkit.getPlayer(event.getOwner());
         String world;
 
