@@ -20,7 +20,7 @@ class LevelCalculatedListener implements Listener {
     @EventHandler
     void onLevelCalculated(IslandLevelCalculatedEvent event) {
         Results results = event.getResults();
-        Player player = Bukkit.getPlayer(event.getOwner());
+        Player player = Bukkit.getPlayer(event.getTargetPlayer());
         String world;
 
         if (player == null) return;
